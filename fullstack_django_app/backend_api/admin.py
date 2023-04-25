@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import YouTube
+from .models import Book
 
-admin.site.register(YouTube)
+admin.site.register(Book)

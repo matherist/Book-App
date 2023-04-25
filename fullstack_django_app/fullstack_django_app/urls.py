@@ -21,5 +21,5 @@ from backend_api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', YouTubeView.as_view(), name='oh shit')
+    path('', BookView.as_view(), name='oh shit')
 ]

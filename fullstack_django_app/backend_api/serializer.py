@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import YouTube
+from .models import Book
 
 
-class YouTubeSerializer(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = YouTube
-        fields = ['title', 'description', 'link']
+        model = Book
+        fields = ['title', 'description', 'link', 'cost']
