@@ -7,4 +7,11 @@ class Book(models.Model):
     description = models.TextField(null=True, blank=True)
     link = models.CharField(max_length =2000, null=True, blank=True)
     cost = models.CharField(max_length =100, null=True, blank=True)
-    
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"
