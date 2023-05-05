@@ -41,7 +41,7 @@ class SaveContactMessageView(View):
 
         return JsonResponse({"message": "Contact message saved successfully."})
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class RegisterView(View):
     def post(self, request):
         username = request.POST['username']
@@ -56,6 +56,8 @@ class RegisterView(View):
         user.save()
 
         return JsonResponse({"message": "User registered successfully."})
+
+@method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):
     def post(self, request):
         username = request.POST['username']
@@ -63,9 +65,16 @@ class LoginView(View):
 
         try:
             user = UserLogin.objects.get(username=username)
-            if check_password(password, user.password):
+            print(f"User found: {user.username}")
+
+            # Check if the plain-text password matches
+            if password == user.password:
+                print("Password matches")
                 return JsonResponse({"message": "Login successful."})
             else:
+                print("Password does not match")
                 return JsonResponse({"message": "Invalid username or password."}, status=401)
         except UserLogin.DoesNotExist:
+            print("User not found")
             return JsonResponse({"message": "Invalid username or password."}, status=401)
+
